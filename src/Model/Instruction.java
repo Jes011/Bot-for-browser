@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package Model;
 
 /**
@@ -11,11 +6,6 @@ package Model;
  * @github https://github.com/Jes011
  */
 public class Instruction {
-    
-    public static byte click = 1;
-    
-    public static byte write = 2;
-    
     private WebPage page;
     private Procces[] processes;
     
