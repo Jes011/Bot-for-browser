@@ -17,6 +17,7 @@ public abstract class Bot {
 
     public Bot(org.openqa.selenium.WebDriver driver) {
         this.driver = driver;
+        this.driver.manage().window().minimize();
     }
 
     protected final void goToPage(String url) {
