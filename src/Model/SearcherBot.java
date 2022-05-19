@@ -1,9 +1,5 @@
 package Model;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import org.openqa.selenium.WebElement;
-
 /**
  *
  * @author Jes011
@@ -17,7 +13,17 @@ public final class SearcherBot extends Bot {
     }
 
     //Search Static
-    public java.util.ArrayList<java.util.ArrayList<WebElement>> searchPageElements() {
+    public java.util.ArrayList<java.util.ArrayList<org.openqa.selenium.WebElement>> searchPageElements() {
+        
+        System.out.println("STATIC SEARCHER\n");
+        
+        
+        //HERE////////////////////////////////7
+        System.out.print("URL: ");////////////////////////////7
+        ////////////////////////////////////7
+        this.goToPage(Model.ComplementaryComponents.read());//////////////7
+        //////////////////////////////////////////////
+        
         System.out.println("Type the tagname of the elements you want finding \n example : div;br;table (don't use \"and\" and do not use spaces)");
 
         String in = null;
@@ -35,11 +41,11 @@ public final class SearcherBot extends Bot {
                 elements = in.split(";");
                 
                 if (this.checkTheCharactersOfElementArray(elements)) {
-                    System.out.println("Searching : "+ Arrays.toString(elements));
+                    System.out.println("Searching : "+ java.util.Arrays.toString(elements));
                     java.util.ArrayList<java.util.ArrayList<org.openqa.selenium.WebElement>> ListF = new java.util.ArrayList<>();
                     java.util.ArrayList<org.openqa.selenium.WebElement> elements2 = null;
 
-                    Iterator<org.openqa.selenium.WebElement> iterator = null;
+                    java.util.Iterator<org.openqa.selenium.WebElement> iterator = null;
                     for (String element : elements) {
                         System.out.println("Searching : ["+ element+"]");
                         elements2 = (java.util.ArrayList) super.findElements(element);
