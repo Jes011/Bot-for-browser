@@ -12,18 +12,19 @@ public class Procces {
     public final static byte write = 2;
     
     private byte action;
-    private String content,xpathReference;
+    private String content;
+    private Element element;
     
-    public Procces(byte action,String xpathReference){
+    public Procces(byte action,Element element){
         this.action = action;
         this.content = null;
-        this.xpathReference = xpathReference;
+        this.element = element;
     }
     
-    public Procces(byte action,String content,String xpathReference){
+    public Procces(byte action,String content,Element element){
         this.action = action;
         this.content = content;
-        this.xpathReference = xpathReference;
+        this.element = element;
     }
     
     public byte getAction(){
@@ -34,7 +35,7 @@ public class Procces {
         return this.content;
     }
     
-    public String getXpathReference(){
-        return this.xpathReference;
+    public Element getElement(){
+        return this.element;
     }
 }

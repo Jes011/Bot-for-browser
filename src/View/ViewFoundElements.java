@@ -9,20 +9,19 @@ public class ViewFoundElements extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewFoundElements
+     *
      * @param elements
      */
-    public ViewFoundElements(java.util.ArrayList<java.util.ArrayList<org.openqa.selenium.WebElement>> elements) {
+    public ViewFoundElements(java.util.ArrayList<java.util.ArrayList<Model.Element>> elements, java.util.ArrayList<java.util.ArrayList<org.openqa.selenium.WebElement>> WebElements) {
         initComponents();
 
         this.getContentPane().setBackground(new java.awt.Color(15, 15, 15));
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-
-        if (elements!=null) {
-            for (int i = 0; i < elements.size(); i++) {
-                for (int j = 0; j < elements.get(i).size(); j++) {
-                    jPanel1.add(new ViewWebElement(elements.get(i).get(j)));
-                }
+        
+        for (int i = 0; i < WebElements.size(); i++) {
+            for (int j = 0; j < WebElements.get(i).size(); j++) {
+                jPanel1.add(new ViewWebElement(elements.get(i).get(j).getXpath(),WebElements.get(i).get(j)));
             }
         }
     }
@@ -78,7 +77,7 @@ public class ViewFoundElements extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("ID | CLASS");
+        jLabel2.setText("XPATH");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

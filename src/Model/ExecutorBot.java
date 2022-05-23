@@ -28,7 +28,7 @@ public final class ExecutorBot extends Bot{
                     System.out.println("Starting...");
                     for (Procces process : instruccion.getProcesses()) {
 
-                        elemento = super.findElement(process.getXpathReference());
+                        elemento = super.findElement(process.getElement().getXpath());
 
                         if (process.getAction() == Procces.click) { //CLICK
                             elemento.click();
@@ -56,10 +56,10 @@ public final class ExecutorBot extends Bot{
         System.out.println("Checking the presence of all the elements necessary for the process: ");
         for (Procces element : elements) {
             try {
-                wait.until(org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated(org.openqa.selenium.By.xpath(element.getXpathReference())));
-                System.out.println("Element " + element.getXpathReference() + " OK");
+                wait.until(org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated(org.openqa.selenium.By.xpath(element.getElement().getXpath())));
+                System.out.println("Element " + element.getElement().getXpath() + " OK");
             } catch (Exception io) {
-                System.err.println("Error: element " + element.getXpathReference() + " did not load in 1 minute");
+                System.err.println("Error: element " + element.getElement().getXpath() + " did not load in 1 minute");
                 return false;
             }
         }
