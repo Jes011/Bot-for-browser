@@ -1,4 +1,5 @@
 package View;
+
 /**
  *
  * @author Jes011
@@ -17,7 +18,8 @@ public class ViewWebElement extends javax.swing.JPanel {
             jTextField1.setText(xpath);
             jLabelIMG.setIcon(new javax.swing.ImageIcon(element.getScreenshotAs(org.openqa.selenium.OutputType.BYTES)));
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

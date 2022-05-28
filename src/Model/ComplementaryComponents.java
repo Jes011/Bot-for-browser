@@ -18,22 +18,25 @@ public final class ComplementaryComponents {
         return escaner.nextLine();
     }
 
-    //WebElementTOElement
-    public static final java.util.ArrayList<java.util.ArrayList<Element>> webElementToElement(java.util.ArrayList<java.util.ArrayList<org.openqa.selenium.WebElement>> elements) {
-
-        java.util.ArrayList<java.util.ArrayList<Element>> FinalList = new java.util.ArrayList<>();
-        java.util.ArrayList<Element> lee = null;
-        for (int i = 0; i < elements.size(); i++) {
-            
-            lee = new java.util.ArrayList<>();
-            for (org.openqa.selenium.WebElement element : elements.get(i)) {
-                lee.add(new Element(element));
-            }
-            
-            FinalList.add(lee);
-
+    //FindXpathOfAWebElement
+    public static String generateXPATH(org.openqa.selenium.WebElement childElement, String current) {
+        String childTag = childElement.getTagName();
+        if (childTag.equals("html")) {
+            return "/html[1]" + current;
         }
-        return FinalList;
+        org.openqa.selenium.WebElement parentElement = childElement.findElement(org.openqa.selenium.By.xpath(".."));
+        java.util.List<org.openqa.selenium.WebElement> childrenElements = parentElement.findElements(org.openqa.selenium.By.xpath("*"));
+        int count = 0;
+        for (int i = 0; i < childrenElements.size(); i++) {
+            org.openqa.selenium.WebElement childrenElement = childrenElements.get(i);
+            String childrenElementTag = childrenElement.getTagName();
+            if (childTag.equals(childrenElementTag)) {
+                count++;
+            }
+            if (childElement.equals(childrenElement)) {
+                return generateXPATH(parentElement, "/" + childTag + "[" + count + "]" + current);
+            }
+        }
+        return null;
     }
-
 }

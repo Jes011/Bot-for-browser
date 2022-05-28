@@ -12,10 +12,8 @@ public final class SearcherBot extends Bot {
         super(driver);
     }
 
-    
-
     //Search Static
-    public java.util.ArrayList<java.util.ArrayList<org.openqa.selenium.WebElement>> searchPageElements() {
+    public java.util.ArrayList<Element> searchPageElements() {
 
         System.out.println("STATIC SEARCHER\n");
 
@@ -39,36 +37,32 @@ public final class SearcherBot extends Bot {
 
                 if (this.checkTheCharactersOfElementArray(elements)) {
                     System.out.println("Searching : " + java.util.Arrays.toString(elements));
-                    java.util.ArrayList<java.util.ArrayList<org.openqa.selenium.WebElement>> WebElementFinalList = new java.util.ArrayList<>();
+                    java.util.ArrayList<Element> xpaths = new java.util.ArrayList<>();
+
                     java.util.ArrayList<org.openqa.selenium.WebElement> elements2 = null;
 
-                    java.util.Iterator<org.openqa.selenium.WebElement> iterator = null;
                     for (String element : elements) {
                         System.out.println("Searching : [" + element + "]");
                         elements2 = (java.util.ArrayList) super.findElements(element);
-                        iterator = elements2.iterator();
 
                         if (!elements2.isEmpty()) {
-                            while (iterator.hasNext()) {
-                                org.openqa.selenium.WebElement element2 = iterator.next();
-                                
-                                if (element2.getSize().getWidth() == 0 || element2.getSize().getHeight() == 0) {
-                                    iterator.remove();
+
+                            for (int i = 0; i < elements2.size(); i++) {
+                                if (elements2.get(i).getSize().getWidth() != 0 & elements2.get(i).getSize().getHeight() != 0) {
+                                    xpaths.add(new Element(ComplementaryComponents.generateXPATH(elements2.get(i), "")));
                                 }
                             }
-
-                            WebElementFinalList.add(elements2);
                         } else {
                             System.err.println("Error: any " + element + " was found");
                         }
 
                     }
 
-                    if (WebElementFinalList.isEmpty()) {
+                    if (xpaths.isEmpty()) {
                         System.err.println("Error: none of the tag names were found ");
                         return null;
                     } else {
-                        return WebElementFinalList;
+                        return xpaths;
                     }
 
                 } else {

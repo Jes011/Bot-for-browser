@@ -7,7 +7,6 @@ package Model;
  * @author Jes011
  * @github https://github.com/Jes011
  *
- * Process to Procces !!!!!!
  */
 public abstract class Bot {
 

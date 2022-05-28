@@ -12,17 +12,15 @@ public class ViewFoundElements extends javax.swing.JFrame {
      *
      * @param elements
      */
-    public ViewFoundElements(java.util.ArrayList<java.util.ArrayList<Model.Element>> elements, java.util.ArrayList<java.util.ArrayList<org.openqa.selenium.WebElement>> WebElements) {
+    public ViewFoundElements(java.util.ArrayList<Model.Element> elements, org.openqa.selenium.WebDriver driver) {
         initComponents();
 
         this.getContentPane().setBackground(new java.awt.Color(15, 15, 15));
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        
-        for (int i = 0; i < WebElements.size(); i++) {
-            for (int j = 0; j < WebElements.get(i).size(); j++) {
-                jPanel1.add(new ViewWebElement(elements.get(i).get(j).getXpath(),WebElements.get(i).get(j)));
-            }
+
+        for (int i = 0; i < elements.size(); i++) {
+            jPanel1.add(new ViewWebElement(elements.get(i).getXpath(), driver.findElement(org.openqa.selenium.By.xpath(elements.get(i).getXpath()))));
         }
     }
 

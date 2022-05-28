@@ -1,6 +1,5 @@
 package View;
 
-import org.openqa.selenium.By;
 
 /**
  *
@@ -9,13 +8,10 @@ import org.openqa.selenium.By;
  */
 public class View {
 
-    private org.openqa.selenium.WebDriver driver;
+    private Model.Manager manager;
 
     public View() {
-        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver/chromedriver");
-        this.driver = new org.openqa.selenium.chrome.ChromeDriver();
-        this.driver.manage().window().minimize();
-
+        this.manager = new Model.Manager();
     }
 
     public void printMenu() {
@@ -36,15 +32,18 @@ public class View {
 
                             switch (option) {
                                 case 1:
-                                    Model.SearcherBot bot = new Model.SearcherBot(driver);
-
-                                    java.util.ArrayList<java.util.ArrayList<org.openqa.selenium.WebElement>> WebElementsList = bot.searchPageElements();
-
-                                    java.util.ArrayList<java.util.ArrayList<Model.Element>> ElementsList = null;
-                                    if (WebElementsList != null) {
-                                        ElementsList = Model.ComplementaryComponents.webElementToElement(WebElementsList);
-                                        ViewFoundElements viewElements = new ViewFoundElements(ElementsList, WebElementsList);
+                                    java.util.ArrayList<Model.Element> ElementsList = this.manager.searchElements();
+                                    if (ElementsList != null) {
+                                        ViewFoundElements viewElements = new ViewFoundElements(ElementsList,this.manager.getDriver());
                                         viewElements.setVisible(true);
+                                        
+                                        option = this.reOption("1. Save\n2. Discard", 2);
+                                        
+                                        switch (option){
+                                            case 1:
+                                                this.manager.savePage(ElementsList);
+                                                break;
+                                        }
                                     }
                                     break;
                                 case 2:
@@ -79,7 +78,10 @@ public class View {
                 } else {
                     return option;
                 }
-            } catch (Exception io) {
+            }catch(java.lang.NumberFormatException io){
+                System.err.println("Error: Select a valid option");
+            } 
+            catch (Exception io) {
                 System.err.println("Error : only digits");
             }
         }

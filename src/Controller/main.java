@@ -1,7 +1,8 @@
 
 package Controller;
 
-import View.View;
+import Model.FileManager;
+
 
 /**
  *
@@ -13,8 +14,11 @@ public class main {
     
     public static void main(String[] args){
         
-        View aa = new View();
+        FileManager.mkdirs();
         
+        System.out.println(System.getProperty("os.name"));
+        View.View aa = new View.View();
+       
         aa.printMenu();
     }
 }

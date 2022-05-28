@@ -1,0 +1,25 @@
+en la clase bot buscador, mejorar la forma en la que el metodo searchElements retorna los elementos para no retornar valores innecesarios
+(eliminar metodo WebElementToElement de la clase ComplemenratyMethods)
+
+solo retornar : imagen y xpath.
+
+
+ej:
+
+[
+	lista Contenedora de imagenes
+	[
+		lista contenedora de imagen de elementos
+		[]
+		lista contenedora de imgaen de elementos2
+		[]
+	]
+
+	lista Contenedora de xpaths
+	[
+		lista contenedora de xpath de elementos
+		[]
+		lista contenedora de xpath de elementos2
+		[]	
+	]
+]
