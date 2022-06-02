@@ -9,20 +9,23 @@ package Model;
 public final class ExecutorBot extends Bot{
     
     private org.openqa.selenium.support.ui.WebDriverWait wait;
-    private Instruction[] instructions;
+    private java.util.ArrayList<Instruction> instructions;
     
-    public ExecutorBot(org.openqa.selenium.WebDriver driver, Instruction[] instructions){
+    public ExecutorBot(org.openqa.selenium.WebDriver driver){
         super(driver);
         this.wait = new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofMinutes(1));
     }
-    public void startProcesses() {
+    public void startProcesses(java.util.ArrayList<Instruction> instructions) {
+        
+        this.instructions = instructions;
+        
         if (this.instructions != null) {
 
             org.openqa.selenium.WebElement elemento = null;
 
             for (Instruction instruccion : this.instructions) {
 
-                super.goToPage(instruccion.getPagina().getDomine() + instruccion.getPagina().getPath());
+                super.goToPage(instruccion.getPage().getURL());
 
                 if (this.checkPresenceOfElements(instruccion.getProcesses())) {
                     System.out.println("Starting...");
@@ -51,7 +54,7 @@ public final class ExecutorBot extends Bot{
         }
     }
     
-    private boolean checkPresenceOfElements(Procces[] elements) {
+    private boolean checkPresenceOfElements(java.util.ArrayList<Procces> elements) {
         
         System.out.println("Checking the presence of all the elements necessary for the process: ");
         for (Procces element : elements) {

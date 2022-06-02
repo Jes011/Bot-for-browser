@@ -20,4 +20,9 @@ public class Element implements java.io.Serializable{
     public String getXpath(){
         return this.xpath;
     }
+    
+    @Override
+    public String toString(){
+        return this.xpath;
+    }
 }

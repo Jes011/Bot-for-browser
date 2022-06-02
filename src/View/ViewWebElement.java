@@ -19,6 +19,15 @@ public class ViewWebElement extends javax.swing.JPanel {
             jLabelIMG.setIcon(new javax.swing.ImageIcon(element.getScreenshotAs(org.openqa.selenium.OutputType.BYTES)));
     }
     
+    public ViewWebElement(String pageName) {
+        initComponents();
+            jTextField1.setText(pageName);
+            jTextField1.setBackground(new java.awt.Color(45,45,45));
+            this.remove(this.jScrollPane1);
+            
+            this.updateUI();
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,6 +44,7 @@ public class ViewWebElement extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(50, 50, 50));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setBorder(null);
 
@@ -59,32 +69,15 @@ public class ViewWebElement extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(jPanel1);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 378, -1));
+
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(25, 25, 25));
         jTextField1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setText("XPATH");
         jTextField1.setBorder(null);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 384, 60));
     }// </editor-fold>//GEN-END:initComponents
 
 

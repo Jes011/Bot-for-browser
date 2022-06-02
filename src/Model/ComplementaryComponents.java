@@ -39,4 +39,52 @@ public final class ComplementaryComponents {
         }
         return null;
     }
+
+    public static byte reOption(String name, String options, int f) {
+        byte option;
+        System.out.println("\n" + name + "\n" + options);
+        while (true) {
+            try {
+                System.out.print("\nSelect an option: ");
+                option = Byte.valueOf(Model.ComplementaryComponents.read());
+
+                if (option <= 0 || option > f) {
+                    System.err.println("Error: Select a valid option");
+                } else {
+                    return option;
+                }
+            } catch (java.lang.NumberFormatException io) {
+                System.err.println("Error: Select a valid option");
+            } catch (Exception io) {
+                System.err.println("Error : only digits");
+            }
+        }
+    }
+
+    public static byte reOption(String[] options, String title) {
+        byte option;
+        System.out.println("\n" + title + "\n");
+
+        for (int i = 0; i < options.length; i++) {
+            System.out.println((i + 1) + ". " + options[i]);
+        }
+
+        while (true) {
+            try {
+                System.out.print("\nSelect an option: ");
+                option = Byte.valueOf(Model.ComplementaryComponents.read());
+
+                if (option <= 0 || option > options.length) {
+                    System.err.println("Error: Select a valid option");
+                } else {
+                    return option;
+                }
+            } catch (java.lang.NumberFormatException io) {
+                System.err.println("Error: Select a valid option");
+            } catch (Exception io) {
+                System.err.println("Error : only digits");
+            }
+        }
+    }
+
 }

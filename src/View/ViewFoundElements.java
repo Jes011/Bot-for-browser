@@ -12,15 +12,26 @@ public class ViewFoundElements extends javax.swing.JFrame {
      *
      * @param elements
      */
-    public ViewFoundElements(java.util.ArrayList<Model.Element> elements, org.openqa.selenium.WebDriver driver) {
+    public ViewFoundElements(java.util.ArrayList<Object> elements, org.openqa.selenium.WebDriver driver) {
         initComponents();
 
         this.getContentPane().setBackground(new java.awt.Color(15, 15, 15));
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
-        for (int i = 0; i < elements.size(); i++) {
-            jPanel1.add(new ViewWebElement(elements.get(i).getXpath(), driver.findElement(org.openqa.selenium.By.xpath(elements.get(i).getXpath()))));
+        if (elements.get(0) instanceof Model.Element) {
+            for (int i = 0; i < elements.size(); i++) {
+                jPanel1.add(new ViewWebElement(((Model.Element) elements.get(i)).getXpath(), driver.findElement(org.openqa.selenium.By.xpath(((Model.Element) elements.get(i)).getXpath()))));
+            }
+        }else if(elements.get(0) instanceof Model.Instruction){
+            for (int i = 0; i < elements.size(); i++) {
+                jPanel1.add(new ViewWebElement(((Model.Instruction)elements.get(i)).getPage().getURL()));
+                driver.navigate().to(((Model.Instruction)elements.get(i)).getPage().getURL());
+                for(int j = 0;j<((Model.Instruction)elements.get(i)).getProcesses().size();j++){
+                    jPanel1.add(new ViewWebElement(((((Model.Instruction)elements.get(i)).getProcesses().get(j).getAction()==1)?"click":"write "+((Model.Instruction)elements.get(i)).getProcesses().get(j).getContent())+" | "+((Model.Instruction)elements.get(i)).getProcesses().get(j).getElement().getXpath(),
+                            driver.findElement(org.openqa.selenium.By.xpath(((Model.Instruction)elements.get(i)).getProcesses().get(j).getElement().getXpath()))));
+                }
+            }
         }
     }
 
@@ -40,7 +51,7 @@ public class ViewFoundElements extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));

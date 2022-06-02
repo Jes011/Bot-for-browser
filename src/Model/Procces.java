@@ -5,7 +5,7 @@ package Model;
  * @author Jes011
  * @github https://github.com/Jes011
  */
-public class Procces {
+public class Procces implements java.io.Serializable{
     
     public final static byte click = 1;
     
@@ -37,5 +37,13 @@ public class Procces {
     
     public Element getElement(){
         return this.element;
+    }
+    
+    public void setContent(String content){
+        this.content = content;
+    }
+    
+    public void setAction(byte action){
+        this.action = action;
     }
 }
